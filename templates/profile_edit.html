@@ -1,0 +1,37 @@
+{% extends 'layouts/base.html' %}
+{% load crispy_forms_filters %}
+
+{% block content %}
+   <div class="w-100 vh-100 mt-5">
+      <div class="container">
+          <div class="row">
+            <div class="col-8 offset-2">
+                <div class="card">
+                    <div class="card-header">
+                        {% if request.path == '/user/profile_edit/' %}
+                           Profile Edit
+                        {% elif request.path == '/user/change-password/' %}
+                           Change Password
+                        {% endif %}
+                    </div>
+                    <div class="card-body">
+                        {% if request.path == '/user/profile_edit/' %}
+                        <form action="" method="post" enctype="multipart/form-data">
+                            {% csrf_token %}
+                            {{ form|crispy }}
+                            <button type="submit" class="btn btn-success">Save</button>
+                         </form>
+                        {% elif request.path == '/user/change-password/' %}
+                        <form action="" method="post">
+                            {% csrf_token %}
+                            {{ form|crispy }}
+                            <button type="submit" class="btn btn-success">Change Password</button>
+                         </form>
+                        {% endif %}
+                    </div>
+                  </div>
+            </div>
+          </div>
+      </div>
+   </div>
+{% endblock %}

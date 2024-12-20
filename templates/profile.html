@@ -1,0 +1,46 @@
+{% extends 'layouts/base.html '%}
+
+
+{% block content %}
+   <div class="w-100 vh-100 mt-5">
+      <div class="container">
+          <div class="row">
+            <div class="col-8 offset-2">
+                <div class="card">
+                    <h5 class="card-header">Profile</h5>
+                    <div class="card-body">
+                       <div class="row align-items-center">
+                         <div class="col-6 text-center">
+                            <img src="{{request.user.profile_pic.url}}" alt="" width="250" height="250" class="rounded-circle">
+                         </div>
+                         <div class="col-6">
+                            <div class="list-group">
+                                <button class="list-group-item list-group-item-action " aria-current="true">
+                                    <strong>Fullname:</strong><span> {{request.user.first_name}} {{request.user.last_name}}</span>
+                                </button>
+                                <button class="list-group-item list-group-item-action">
+                                    <strong>Username:</strong><span> {{request.user.username}}</span>
+                                </button>
+                                <button class="list-group-item list-group-item-action">
+                                    <strong>Email:</strong><span> {{request.user.email|default:"--"}}</span>
+                                </button>
+                                <button class="list-group-item list-group-item-action">
+                                    <strong>Birth date:</strong><span> {{request.user.birth_date|date:"d.m.Y"|default:"--"}}</span>
+                                </button>
+                                 <div class="pt-3 text-end">
+                                    <a class="btn btn-warning gap-3 " href="{% url 'profile_edit' %}"><i class="bi bi-pencil-fill"></i>Edit </a>
+                                    <a class="btn btn-primary" href="{% url 'change_password' %}"><i class="bu bi-key">Change password</i></a>
+                                 </div>
+                              </div>
+                         </div>
+                       </div>
+
+                     
+                    </div>
+                  </div>
+            </div>
+          </div>
+
+      </div>
+   </div>
+{% endblock %}
